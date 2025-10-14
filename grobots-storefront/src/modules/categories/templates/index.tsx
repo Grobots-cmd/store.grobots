@@ -36,7 +36,6 @@ export default function CategoryTemplate({
 
   getParents(category)
 
-  
   return (
     <div
       className="flex flex-col small:flex-row small:items-start py-6 content-container"

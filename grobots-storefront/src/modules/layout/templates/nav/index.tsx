@@ -41,6 +41,7 @@ export default async function Nav() {
                 Account
               </LocalizedClientLink>
             </div>
+            
             <Suspense
               fallback={
                 <LocalizedClientLink

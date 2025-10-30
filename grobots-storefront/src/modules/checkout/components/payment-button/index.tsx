@@ -6,6 +6,7 @@ import { HttpTypes } from "@medusajs/types"
 import { Button } from "@medusajs/ui"
 import { useElements, useStripe } from "@stripe/react-stripe-js"
 import React, { useState } from "react"
+// import import {RazorpayPaymentButton} from "./razorpay-payment-button"
 import ErrorMessage from "../error-message"
 
 type PaymentButtonProps = {
@@ -35,6 +36,8 @@ const PaymentButton: React.FC<PaymentButtonProps> = ({
           data-testid={dataTestId}
         />
       )
+    // case "razorpay":
+    //   return <RazorpayPaymentButton session={paymentSession} notReady={notReady} cart={cart} />
     case isManual(paymentSession?.provider_id):
       return (
         <ManualTestPaymentButton notReady={notReady} data-testid={dataTestId} />

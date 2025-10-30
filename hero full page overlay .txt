@@ -1,0 +1,74 @@
+      {/* Fullscreen Slideshow Modal */}
+      {isModalOpen && (
+        <div 
+          className="fixed inset-0 bg-black z-50 flex items-center justify-center animate-in fade-in duration-300"
+          onClick={(e) => {
+            if (e.target === e.currentTarget) setIsModalOpen(false)
+          }}
+        >
+          {/* Close Button */}
+          <button
+            onClick={() => setIsModalOpen(false)}
+            className="absolute top-8 right-8 w-12 h-12 flex items-center justify-center rounded-full bg-white/10 backdrop-blur-sm text-white text-2xl hover:bg-white/20 hover:scale-110 transition-all z-50 border border-white/20"
+            aria-label="Close gallery"
+          >
+            ✕
+          </button>
+
+          {/* Previous Button */}
+          <button
+            onClick={prevSlide}
+            className="absolute left-8 w-16 h-16 flex items-center justify-center rounded-full bg-white/10 backdrop-blur-sm text-white text-4xl hover:bg-white/20 hover:scale-110 transition-all z-50 border border-white/20"
+            aria-label="Previous image"
+          >
+            ‹
+          </button>
+
+          {/* Next Button */}
+          <button
+            onClick={nextSlide}
+            className="absolute right-8 w-16 h-16 flex items-center justify-center rounded-full bg-white/10 backdrop-blur-sm text-white text-4xl hover:bg-white/20 hover:scale-110 transition-all z-50 border border-white/20"
+            aria-label="Next image"
+          >
+            ›
+          </button>
+
+          {/* Main Image with Smooth Transitions */}
+          <div className="w-full h-full flex items-center justify-center p-16">
+            <div className="relative w-full h-full max-w-6xl max-h-[80vh]">
+              {slideshowImages.map((img, idx) => (
+                <Image
+                  key={img.url + idx}
+                  src={img.url}
+                  alt={img.alt}
+                  fill
+                  className={`object-cover transition-all duration-500 ${
+                    idx === activeSlide 
+                      ? "opacity-100 scale-100" 
+                      : "opacity-0 scale-95"
+                  }`}
+                />
+              ))}
+            </div>
+          </div>
+
+          {/* Bottom Indicators */}
+          <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex items-center gap-3 bg-white/10 backdrop-blur-md px-6 py-3 rounded-full">
+            {Array.from({ length: totalSlides }).map((_, index) => (
+              <button
+                key={index}
+                onClick={() => goToSlide(index)}
+                className={`h-3 rounded-full transition-all duration-300 ${
+                  index === activeSlide 
+                    ? 'bg-white w-12' 
+                    : 'bg-white/40 w-3 hover:bg-white/60'
+                }`}
+                aria-label={`Go to slide ${index + 1}`}
+              />
+            ))}
+            <span className="ml-3 text-white text-sm font-medium">
+              {activeSlide + 1} / {totalSlides}
+            </span>
+          </div>
+        </div>
+      )}

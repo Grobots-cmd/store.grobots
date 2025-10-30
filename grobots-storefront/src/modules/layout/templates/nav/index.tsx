@@ -26,7 +26,7 @@ export default async function Nav() {
               className="text-3xl md:text-4xl font-bold transition-all uppercase tracking-tighter text-gray-900"
               data-testid="nav-store-link"
             >
-              Medusa Store
+              DIagon Alley
             </LocalizedClientLink>
           </div>
 

@@ -82,9 +82,12 @@ const Payment = ({
         activeSession?.provider_id === selectedPaymentMethod
 
       if (!checkActiveSession) {
-        await initiatePaymentSession(cart, {
-          provider_id: selectedPaymentMethod,
-        })
+        // await initiatePaymentSession(cart, {
+        //   provider_id: selectedPaymentMethod,
+        //   context:{
+        //     extra:cart
+        //   }
+        // })
       }
 
       if (!shouldInputCard) {

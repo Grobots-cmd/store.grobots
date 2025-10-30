@@ -6,12 +6,20 @@ import Bancontact from "@modules/common/icons/bancontact"
 import PayPal from "@modules/common/icons/paypal"
 
 /* Map of payment provider_id to their title and icon. Add in any payment providers you want to use. */
+export const isRazorpay = (providerId?: string) => {
+  return providerId?.startsWith("pp_razorpay")
+}
+
 export const paymentInfoMap: Record<
   string,
   { title: string; icon: React.JSX.Element }
 > = {
   pp_stripe_stripe: {
     title: "Credit card",
+    icon: <CreditCard />,
+  },
+  pp_razorpay_razorpay: {
+    title: "Razorpay",
     icon: <CreditCard />,
   },
   "pp_stripe-ideal_stripe": {

@@ -1895,7 +1895,7 @@
     tailwindcss "^3.3.6"
     vite "^5.4.14"
 
-"@medusajs/admin-sdk@2.10.3":
+"@medusajs/admin-sdk@2.10.3", "@medusajs/admin-sdk@latest":
   version "2.10.3"
   resolved "https://registry.npmjs.org/@medusajs/admin-sdk/-/admin-sdk-2.10.3.tgz"
   integrity sha512-r79MwKzXVg2dIznczZ9MjOd3r6TwO7bizWBF4B88y/6r2YIL/p+FFX54nkFRKPIFlXOPuQjYNhFqJGNnP0POAQ==
@@ -1984,7 +1984,7 @@
   resolved "https://registry.npmjs.org/@medusajs/cart/-/cart-2.10.3.tgz"
   integrity sha512-Pr463FnqucJmW4mqygMTIWrvv/OcbG5Qi+usYiWlIWoFdzJXIb7XezsWizl5bOF/+rreY3/q/IBxsC8LZJtlTA==
 
-"@medusajs/cli@2.10.3":
+"@medusajs/cli@2.10.3", "@medusajs/cli@latest":
   version "2.10.3"
   resolved "https://registry.npmjs.org/@medusajs/cli/-/cli-2.10.3.tgz"
   integrity sha512-iuPHtLpZOhLPEqShgmoF09OIPFkyH1KlgNar7TZdBB2R94NKAC+/bQs/IMEZ1UgWJ2Z+UqVDAtUtLRCqGnHq5Q==
@@ -2125,7 +2125,7 @@
   resolved "https://registry.npmjs.org/@medusajs/file/-/file-2.10.3.tgz"
   integrity sha512-IvC+irquIl/z3X4u4epj3w6Be2Uzyv/d97sCFxudXHZBN+itQ+KxYSaDXNl+oaVk6Xta1uBcyuLICrF3HAp7QQ==
 
-"@medusajs/framework@2.10.3":
+"@medusajs/framework@^2.0.0", "@medusajs/framework@2.10.3":
   version "2.10.3"
   resolved "https://registry.npmjs.org/@medusajs/framework/-/framework-2.10.3.tgz"
   integrity sha512-fwAhXbTuN/A1USsvlAnWeP8waOf4BADTYBCcM+thMaXB/83kKJa3OQrpiHfRsrDRnEf89JIp7hrNQCyC8ilRQA==
@@ -2211,7 +2211,7 @@
   resolved "https://registry.npmjs.org/@medusajs/locking/-/locking-2.10.3.tgz"
   integrity sha512-RvT4fTJ0n6rj4fMYfHxAhdts/MXZTNang+7DUOKmgLInwpamelNpwJbcUv+3N90zsAO6pgSw/H6c3MDq79tBpA==
 
-"@medusajs/medusa@2.10.3":
+"@medusajs/medusa@2.10.3", "@medusajs/medusa@latest":
   version "2.10.3"
   resolved "https://registry.npmjs.org/@medusajs/medusa/-/medusa-2.10.3.tgz"
   integrity sha512-F9jmh6HvU8TNWrUxvsZnWT8SwkCZ0UNFABvwPHClZHQcFmYaexpr8AzZRE/F8Jeb5f8DXr0TSADOGGhmvQCoqg==
@@ -4637,6 +4637,13 @@
     "@sendgrid/client" "^8.1.4"
     "@sendgrid/helpers" "^8.0.0"
 
+"@sgftech/payment-razorpay@^2.1.11":
+  version "2.1.11"
+  resolved "https://registry.npmjs.org/@sgftech/payment-razorpay/-/payment-razorpay-2.1.11.tgz"
+  integrity sha512-5d1DPZ1GQ6QqAJ0ehSQIDZh/inHZnqA0GcnFEW71bIJtYZNfZ9AZCNAqyZ5F4vTb/GOOjP5ZQBG+WeHxgVSohQ==
+  dependencies:
+    razorpay "^2.9.5"
+
 "@sinclair/typebox@^0.27.8":
   version "0.27.8"
   resolved "https://registry.npmjs.org/@sinclair/typebox/-/typebox-0.27.8.tgz"
@@ -5689,6 +5696,15 @@ axios@^0.21.4:
   integrity sha512-ut5vewkiu8jjGBdqpM44XxjuCjq9LAKeHVmoVfHVzy8eHgxxq8SbAVQNovDA8mVi05kP0Ea/n/UzcSHcTJQfNg==
   dependencies:
     follow-redirects "^1.14.0"
+
+axios@^1.6.8:
+  version "1.13.1"
+  resolved "https://registry.npmjs.org/axios/-/axios-1.13.1.tgz"
+  integrity sha512-hU4EGxxt+j7TQijx1oYdAjw4xuIp1wRQSsbMFwSthCWeBQur1eF+qJ5iQ5sN3Tw8YRzQNKb8jszgBdMDVqwJcw==
+  dependencies:
+    follow-redirects "^1.15.6"
+    form-data "^4.0.4"
+    proxy-from-env "^1.1.0"
 
 axios@^1.7.4:
   version "1.7.9"
@@ -9196,11 +9212,6 @@ picomatch@^2.3.1:
   resolved "https://registry.npmjs.org/picomatch/-/picomatch-2.3.1.tgz"
   integrity sha512-JU3teHTNjmE2VCGFzuY8EXzCDVwEqB2a8fsIvwaStHhAWJEeVd1o1QD80CU6+ZdEXXSLbSsuLwJjkCBWqRQUVA==
 
-picomatch@3.x:
-  version "3.0.1"
-  resolved "https://registry.npmjs.org/picomatch/-/picomatch-3.0.1.tgz"
-  integrity sha512-I3EurrIQMlRc9IaAZnqRR044Phh2DXY+55o7uJ0V+hYZAcQYSuFWsc9q5PvyDHUSCe1Qxn/iBz+78s86zWnGag==
-
 pify@^2.3.0:
   version "2.3.0"
   resolved "https://registry.npmjs.org/pify/-/pify-2.3.0.tgz"
@@ -9507,6 +9518,13 @@ raw-body@2.5.2:
     http-errors "2.0.0"
     iconv-lite "0.4.24"
     unpipe "1.0.0"
+
+razorpay@^2.9.5:
+  version "2.9.6"
+  resolved "https://registry.npmjs.org/razorpay/-/razorpay-2.9.6.tgz"
+  integrity sha512-zsHAQzd6e1Cc6BNoCNZQaf65ElL6O6yw0wulxmoG5VQDr363fZC90Mp1V5EktVzG45yPyNomNXWlf4cQ3622gQ==
+  dependencies:
+    axios "^1.6.8"
 
 react-aria@^3.33.1:
   version "3.37.0"

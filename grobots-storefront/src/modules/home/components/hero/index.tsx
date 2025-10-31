@@ -1,9 +1,8 @@
 "use client";
 import { Button , Heading} from "@medusajs/ui";
 import Image from "next/image";
-import { useState, useEffect, Suspense } from "react";
+import { useState, Suspense } from "react";
 import SkeletonProductGrid from "@modules/skeletons/templates/skeleton-product-grid";
-import RefinementList from "@modules/store/components/refinement-list";
 import { SortOptions } from "@modules/store/components/refinement-list/sort-products";
 import PaginatedProducts from "@modules/store/templates/paginated-products";
 
@@ -17,7 +16,6 @@ const productSpecs = [
 ];
 
 const StoreTemplate = ({
-  sortBy,
   page,
   countryCode,
 }: {
@@ -27,7 +25,6 @@ const StoreTemplate = ({
 }) => {
   const [imageLoaded, setImageLoaded] = useState(false);
   const pageNumber = page ? parseInt(page) : 1;
-  const sort = sortBy || "created_at";
 
   return (
     <>
@@ -95,29 +92,6 @@ const StoreTemplate = ({
           </div>
         </div>
       )}
-
-      {/* Store Content */}
-      <div
-        className="flex flex-col small:flex-row small:items-start px-10 w-full my-5"
-        data-testid="category-container"
-      >
-          <Heading
-            level="h2"
-            className="mt-12 pr-12 text-left font-clash text-[4vw] py-2 leading-relaxed tracking-tighter "
-          >
-            Featured <br /> Products
-          </Heading>
-        <div className="w-full">
-          <Suspense fallback={<SkeletonProductGrid />}>
-            <PaginatedProducts
-              sortBy={sort}
-              page={pageNumber}
-              countryCode={countryCode}
-            />
-          </Suspense>
-        </div>
-      </div>
-
     </>
   );
 };

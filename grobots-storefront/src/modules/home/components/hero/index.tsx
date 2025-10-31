@@ -1,7 +1,12 @@
 "use client";
 import { Button, Heading } from "@medusajs/ui";
 import Image from "next/image";
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, Suspense } from "react";
+import SkeletonProductGrid from "@modules/skeletons/templates/skeleton-product-grid";
+import RefinementList from "@modules/store/components/refinement-list";
+import FeaturedProducts from "@modules/home/components/featured-products";
+import { SortOptions } from "@modules/store/components/refinement-list/sort-products";
+import PaginatedProducts from "@modules/store/templates/paginated-products"; // Make sure this path is correct
 
 const productSpecs = [
   { label: "Current", value: "160A / 1200A" },
@@ -19,7 +24,12 @@ const slideshowImages = [
   { url: "/action.jpg", alt: "XeRun XR10 Pro - In Action" },
 ];
 
-const Hero = () => {
+interface HeroProps {
+  searchParams?: { sort?: string; page?: string };
+  countryCode: string;
+}
+
+const Hero = ({ searchParams, countryCode }: HeroProps) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [activeSlide, setActiveSlide] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
@@ -34,11 +44,6 @@ const Hero = () => {
     setActiveSlide((prev) => (prev - 1 + totalSlides) % totalSlides);
   }, [totalSlides]);
 
-  const goToSlide = useCallback((index: number) => {
-    setActiveSlide(index);
-    setIsAutoPlaying(false);
-    setTimeout(() => setIsAutoPlaying(true), 10000);
-  }, []);
 
   useEffect(() => {
     if (!isModalOpen && isAutoPlaying) {
@@ -69,6 +74,9 @@ const Hero = () => {
     };
   }, [isModalOpen]);
 
+  const sort = searchParams?.sort || "created_at";
+  const pageNumber = searchParams?.page ? parseInt(searchParams.page) : 1;
+
   return (
     <>
       <div className="h-screen w-full border-b border-ui-border-base relative bg-ui-bg-subtle p-4">
@@ -88,14 +96,15 @@ const Hero = () => {
             <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:64px_64px] pointer-events-none z-[1]" />
             <div className="absolute inset-0 flex flex-col justify-between p-8 md:p-12 lg:p-16 pointer-events-none">
               <div className="flex-1 flex items-center">
-                <span
-                  className={`text-[clamp(2rem,10vw,8rem)] md:text-[clamp(3rem,12vw,10rem)] font-bold text-white z-[2] leading-[0.9] tracking-tighter transition-all duration-1000 ${
+                <Heading
+                  level="h1"
+                  className={`text-[clamp(2rem,10vw,8rem)] md:text-[clamp(3rem,12vw,10rem)] font-bold font-clash text-white z-[2] leading-[0.9] tracking-tight transition-all duration-1000 ${
                     imageLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
                   }`}
                   style={{ textShadow: "0 8px 32px rgba(0,0,0,0.8)" }}
                 >
                   XeRun<br />XR10 Pro
-                </span>
+                </Heading>
               </div>
               <div
                 className={`z-[3] pointer-events-auto space-y-6 max-w-4xl transition-all duration-1000 delay-300 ${
@@ -167,6 +176,8 @@ const Hero = () => {
           </div>
         </div>
       </div>
+
+      {/* Modal */}
       {isModalOpen && (
         <div className="fixed inset-0 bg-black bg-opacity-90 z-50 flex items-center justify-center p-4">
           <div className="relative w-full max-w-4xl h-[80vh] bg-white rounded-xl overflow-hidden">
@@ -197,6 +208,23 @@ const Hero = () => {
           </div>
         </div>
       )}
+
+      {/* Featured Products Section */}
+      <div>
+        <Heading
+          level="h2"
+          className="mt-12 mb-6 text-left font-clash text-[8vw] font-semibold p-14"
+        >
+          Featured Products
+        </Heading>
+        <Suspense fallback={<SkeletonProductGrid />}>
+          <PaginatedProducts
+            sortBy={sort}
+            page={pageNumber}
+            countryCode={countryCode}
+          />
+        </Suspense>
+      </div>
     </>
   );
 };

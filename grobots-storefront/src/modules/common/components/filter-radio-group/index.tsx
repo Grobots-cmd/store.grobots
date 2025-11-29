@@ -20,8 +20,8 @@ const FilterRadioGroup = ({
   "data-testid": dataTestId,
 }: FilterRadioGroupProps) => {
   return (
-    <div className="flex gap-x-3 flex-col gap-y-3">
-      <Text className="txt-compact-small-plus text-ui-fg-muted">{title}</Text>
+    <div className="flex gap-x-3 flex-col gap-y-4">
+      <Text className="text-sm font-semibold text-black tracking-tight uppercase">{title}</Text>
       <RadioGroup data-testid={dataTestId} onValueChange={handleChange}>
         {items?.map((i) => (
           <div
@@ -30,7 +30,7 @@ const FilterRadioGroup = ({
               "ml-[-23px]": i.value === value,
             })}
           >
-            {i.value === value && <EllipseMiniSolid />}
+            {i.value === value && <EllipseMiniSolid className="text-black" />}
             <RadioGroup.Item
               checked={i.value === value}
               className="hidden peer"
@@ -40,9 +40,9 @@ const FilterRadioGroup = ({
             <Label
               htmlFor={i.value}
               className={clx(
-                "!txt-compact-small !transform-none text-ui-fg-subtle hover:cursor-pointer",
+                "text-sm font-medium text-black/60 hover:cursor-pointer hover:text-black transition-colors tracking-tight",
                 {
-                  "text-ui-fg-base": i.value === value,
+                  "text-black font-semibold": i.value === value,
                 }
               )}
               data-testid="radio-label"

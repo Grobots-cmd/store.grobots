@@ -69,8 +69,6 @@ module.exports = {
           "Ubuntu",
           "sans-serif",
         ],
-
-        clash: ["var(--font-clashdisplay)", "Inter", "sans-serif"],
       },
       keyframes: {
         ring: {

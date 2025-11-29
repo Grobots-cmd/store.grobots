@@ -2,6 +2,18 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply antialiased bg-white text-black;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+    letter-spacing: -0.02em;
+  }
+}
+
 @layer utilities {
   /* Chrome, Safari and Opera */
   .no-scrollbar::-webkit-scrollbar {
@@ -51,43 +63,43 @@
 
 @layer components {
   .content-container {
-    @apply max-w-[1440px] w-full mx-auto px-6;
+    @apply max-w-[1440px] w-full mx-auto px-6 lg:px-8;
   }
 
   .contrast-btn {
-    @apply px-4 py-2 border border-black rounded-full hover:bg-black hover:text-white transition-colors duration-200 ease-in;
+    @apply px-6 py-3 border-2 border-black rounded-none hover:bg-black hover:text-white transition-all duration-300 ease-out font-medium tracking-tight;
   }
 
   .text-xsmall-regular {
-    @apply text-[10px] leading-4 font-normal;
+    @apply text-[11px] leading-4 font-normal tracking-tight;
   }
 
   .text-small-regular {
-    @apply text-xs leading-5 font-normal;
+    @apply text-xs leading-5 font-normal tracking-tight;
   }
 
   .text-small-semi {
-    @apply text-xs leading-5 font-semibold;
+    @apply text-xs leading-5 font-semibold tracking-tight;
   }
 
   .text-base-regular {
-    @apply text-sm leading-6 font-normal;
+    @apply text-sm leading-6 font-normal tracking-tight;
   }
 
   .text-base-semi {
-    @apply text-sm leading-6 font-semibold;
+    @apply text-sm leading-6 font-semibold tracking-tight;
   }
 
   .text-large-regular {
-    @apply text-base leading-6 font-normal;
+    @apply text-base leading-6 font-normal tracking-tight;
   }
 
   .text-large-semi {
-    @apply text-base leading-6 font-semibold;
+    @apply text-base leading-6 font-semibold tracking-tight;
   }
 
   .text-xl-regular {
-    @apply text-2xl leading-[36px] font-normal;
+    @apply text-2xl leading-[36px] font-normal tracking-tight;
   }
 
   .text-xl-semi {
@@ -109,4 +121,11 @@
   .text-3xl-semi {
     @apply text-[32px] leading-[44px] font-semibold;
   }
+}
+
+
+.dg-scroll-lock {
+  position: fixed !important;
+  overflow: hidden !important;
+  touch-action: none !important;
 }

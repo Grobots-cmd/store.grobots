@@ -1,64 +1,78 @@
 import { Metadata } from "next";
 import Hero from "@modules/home/components/hero";
-import { listCollections } from "@lib/data/collections";
+import MissionSection from "@modules/home/components/mission-section";
+import ServicesSection from "@modules/home/components/services-section";
+import AnimatedWordsSection from "@modules/home/components/animated-words-section";
+import FeaturedProductsGrid from "@modules/home/components/featured-products-grid";
+import TechnologySection from "@modules/home/components/technology-section";
+import PromotionalSection from "@modules/home/components/promotional-section";
+import CTASection from "@modules/home/components/cta-section";
+import { listProducts } from "@lib/data/products";
 import { getRegion } from "@lib/data/regions";
-import { SortOptions } from "@modules/store/components/refinement-list/sort-products";
-import { Suspense } from "react";
-import SkeletonProductGrid from "@modules/skeletons/templates/skeleton-product-grid";
-import PaginatedProducts from "@modules/store/templates/paginated-products";
 
 interface HomeProps {
   params: Promise<{ countryCode: string }>;
-  searchParams?: {
-    sort?: SortOptions;
-    page?: string;
-  };
 }
 
 export const metadata: Metadata = {
-  title: "Medusa Next.js Starter Template",
+  title: "Grobots - Advanced Robotics & 3D Printing Solutions",
   description:
-    "A performant frontend ecommerce starter template with Next.js 15 and Medusa.",
+    "Discover cutting-edge robotics equipment, 3D printing solutions, and expert training. Global delivery in 15 days. Empower your innovation with Grobots.",
 };
 
-export default async function Home({ params, searchParams }: HomeProps) {
+export default async function Home({ params }: HomeProps) {
   const { countryCode } = await params;
-  const sort = searchParams?.sort || "created_at";
-  const pageNumber = searchParams?.page ? parseInt(searchParams.page) : 1;
 
-  let region, collections;
+  let region, products;
   try {
     region = await getRegion(countryCode);
-    const { collections: collectionsData } = await listCollections({
-      fields: "id, handle, title",
+    
+    // Fetch featured products
+    const productsData = await listProducts({
+      regionId: region.id,
+      queryParams: {
+        limit: 8,
+        fields: "*variants.calculated_price,+images,+thumbnail",
+      },
     });
-    collections = collectionsData;
+    products = productsData.response.products;
   } catch (error) {
-    console.error("Failed to fetch region or collections:", error);
+    console.error("Failed to fetch region or products:", error);
     return <div>Failed to load data. Please try again later.</div>;
   }
 
-  if (!collections || !region) {
+  if (!region) {
     return <div>No data available.</div>;
   }
 
   return (
-    <div className="w-full min-h-screen">
+    <div className="w-full">
+      {/* Hero Section */}
       <Hero />
       
-      <div className="flex flex-col small:flex-row small:items-start px-10 w-full my-5">
-        <h2 className="mt-12 px-12 text-left font-clash text-[6vw] leading-tight tracking-tight font-semibold">
-          Featured <br /> Products
-        </h2>
-        <div className="w-full">
-          <Suspense fallback={<SkeletonProductGrid />}>
-            <PaginatedProducts
-              page={pageNumber}
-              countryCode={countryCode}
-            />
-          </Suspense>
-        </div>
-      </div>
+      
+      {/* Mission Statement */}
+      <MissionSection />
+      
+      {/* Services Overview */}
+      <ServicesSection />
+      
+      {/* Animated Words */}
+      <AnimatedWordsSection />
+      
+      {/* Featured Products */}
+      {products && products.length > 0 && (
+        <FeaturedProductsGrid products={products} region={region} />
+      )}
+      
+      {/* Technology Highlight */}
+      <TechnologySection />
+      
+      {/* Promotional Banners */}
+      <PromotionalSection />
+      
+      {/* Final CTA */}
+      <CTASection />
     </div>
   );
 }

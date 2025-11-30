@@ -1,0 +1,19 @@
+{
+  "name": "grobots-monorepo",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Grobots Commerce Platform - Medusa Backend + Next.js Storefront",
+  "scripts": {
+    "install:all": "concurrently \"npm install --prefix grobots\" \"npm install --prefix grobots-storefront\"",
+    "dev": "concurrently --names \"BACKEND,STOREFRONT\" --prefix-colors \"bgBlue.bold,bgMagenta.bold\" \"npm run dev --prefix grobots\" \"npm run dev --prefix grobots-storefront\"",
+    "build": "concurrently \"npm run build --prefix grobots\" \"npm run build --prefix grobots-storefront\"",
+    "start": "concurrently --names \"BACKEND,STOREFRONT\" --prefix-colors \"bgBlue.bold,bgMagenta.bold\" \"npm run start --prefix grobots\" \"npm run start --prefix grobots-storefront\"",
+    "backend:dev": "npm run dev --prefix grobots",
+    "storefront:dev": "npm run dev --prefix grobots-storefront",
+    "backend:build": "npm run build --prefix grobots",
+    "storefront:build": "npm run build --prefix grobots-storefront"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}

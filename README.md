@@ -52,7 +52,7 @@ This starts:
 
 | Command | Description |
 |---------|-------------|
-| `npm run install:all` | Install dependencies for both projects |
+| `npm run install:concurrent` | Install dependencies for both projects |
 | `npm run dev` | Run both backend and storefront in development |
 | `npm run build` | Build both projects for production |
 | `npm start` | Start both projects in production mode |
